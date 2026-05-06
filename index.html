@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blush Bunny Skincare</title>
 
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff6fb;
+}
+
+/* HEADER */
+header {
+  background: #ff8fc2;
+  padding: 15px;
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  background: #ffd6ec;
+}
+
+nav button {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ff4fa3;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 40px;
+}
+
+.hero h1 {
+  color: #ff4fa3;
+}
+
+/* PRODUCTS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.btn {
+  margin-top: 10px;
+  background: #ff6fb0;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* CART */
+#cart {
+  position: fixed;
+  right: 10px;
+  top: 80px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 230px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🐰 Blush Bunny Skincare</div>
+</header>
+
+<nav>
+<button onclick="showAll()">Shop</button>
+<button onclick="checkout()">Checkout</button>
+</nav>
+
+<div class="hero">
+  <h1>Glow Soft. Glow Cute. 💗</h1>
+  <p>Vegan, gentle skincare + adorable merch</p>
+</div>
+
+<div id="cart">
+<h3>🛒 Cart</h3>
+<ul id="cartItems"></ul>
+<p id="total"></p>
+</div>
+
+<div class="grid">
+
+<!-- SKINCARE -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?skincare,pink"/>
+<h3>Glow Serum</h3>
+<p>$18</p>
+<button class="btn" onclick="add('Glow Serum',18)">Add</button>
+</div>
+
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?face,cleanser"/>
+<h3>Bunny Cleanser</h3>
+<p>$14</p>
+<button class="btn" onclick="add('Cleanser',14)">Add</button>
+</div>
+
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?moisturizer"/>
+<h3>Soft Moisturizer</h3>
+<p>$16</p>
+<button class="btn" onclick="add('Moisturizer',16)">Add</button>
+</div>
+
+<!-- MERCH -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pink,shirt"/>
+<h3>Bunny Shirt</h3>
+<p>$22</p>
+<button class="btn" onclick="add('Shirt',22)">Add</button>
+</div>
+
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cute,cup"/>
+<h3>Kawaii Cup</h3>
+<p>$12</p>
+<button class="btn" onclick="add('Cup',12)">Add</button>
+</div>
+
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?plush,toy"/>
+<h3>Bunny Plushie</h3>
+<p>$20</p>
+<button class="btn" onclick="add('Plushie',20)">Add</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Blush Bunny 💗
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function add(name, price){
+  cart.push(name);
+  total += price;
+  render();
+}
+
+function render(){
+  document.getElementById("cartItems").innerHTML =
+    cart.map(i => "<li>"+i+"</li>").join("");
+  document.getElementById("total").innerText =
+    "Total: $" + total;
+}
+
+function checkout(){
+  alert("Ready for Stripe checkout 💳 (next step)");
+}
+</script>
+
+</body>
+</html>
